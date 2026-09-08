@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 class Blockbreaker {
 private:
-    Game _game;
     sf::RenderWindow _window;
     sf::Event _event;
 public:
