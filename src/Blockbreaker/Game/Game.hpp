@@ -1,5 +1,6 @@
 #pragma once
 #include "Ball.hpp"
+#include "Racket.hpp"
 #include "Blockbreaker/Iscene.hpp"
 #include "Blockbreaker/SceneManager.hpp"
 
@@ -8,8 +9,7 @@ private:
     SceneManager &_SceneManager;
     sf::Clock _clock;
     std::vector<ball> _balls;
-    float _accumulator{0.0f};
-    float _move_elapsed{0.2f};
+    std::unique_ptr<racket> _racket;
 public:
     explicit Game(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Game() override;

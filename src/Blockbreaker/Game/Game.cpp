@@ -9,8 +9,9 @@
 
 Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _SceneManager(SceneManager)
 {
-    ball ball;
-    _balls.push_back(ball);
+    _racket = std::make_unique<racket>(window.getSize());
+    ball b;
+    _balls.push_back(b);
 }
 
 
@@ -19,6 +20,7 @@ void Game::draw(sf::RenderWindow &window)
     for (const auto& ball: _balls) {
         ball.draw(window);
     }
+    _racket->draw(window);
 }
 
 void Game::update(float time, sf::RenderWindow &window)
@@ -28,8 +30,9 @@ void Game::update(float time, sf::RenderWindow &window)
         dt = 0.1f;
     }
     for (auto& ball : _balls) {
-        ball.update(dt, window);
+        ball.update(dt, window, *_racket);
     }
+    _racket->update(dt, window);
 }
 
 Game::~Game()

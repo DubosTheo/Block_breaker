@@ -3,6 +3,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
 
+#include "Racket.hpp"
+
 class ball {
 private:
     sf::CircleShape _circle_shape;
@@ -16,8 +18,8 @@ public:
     void setVelocity(const sf::Vector2f velocity);
     void setSpeed(const float speed);
     sf::Vector2f getPosition() const {return _position;}
-    sf::Vector2f getVelocity() const { return _velocity;}
+    sf::Vector2f getVelocity() const {return _velocity;}
     float getspeed() const {return _speed;}
-    void update(float dt, sf::RenderWindow &window);
+    void update(float dt, sf::RenderWindow &window, const racket& racket);
     void draw(sf::RenderWindow& window) const;
 };
