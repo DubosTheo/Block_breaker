@@ -16,7 +16,7 @@ public:
     void changeScene(std::unique_ptr<Iscene> newScene);
     void popScene();
     void draw(sf::RenderWindow &window);
-    void update(float time);
+    void update(float time, sf::RenderWindow &window);
     void handleEvents(sf::RenderWindow &window);
     bool isEmpty() const {return _SceneManager.empty();}
 };

@@ -31,10 +31,10 @@ void SceneManager::handleEvents(sf::RenderWindow &window)
         _SceneManager.back()->handleEvent(window);
 }
 
-void SceneManager::update(float time)
+void SceneManager::update(float time, sf::RenderWindow &window)
 {
     if (!_SceneManager.empty())
-        _SceneManager.back()->update(time);
+        _SceneManager.back()->update(time, window);
 }
 
 

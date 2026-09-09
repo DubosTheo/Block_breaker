@@ -8,9 +8,10 @@
 CC := g++
 
 SRC += src/Blockbreaker/Blockbreaker.cpp
-SRC += src/Blockbreaker/Game/Game.cpp
-SRC += src/Blockbreaker/Game/Racket.cpp
 SRC += src/Blockbreaker/SceneManager.cpp
+SRC += src/Blockbreaker/Game/Game.cpp
+SRC += src/Blockbreaker/Game/Ball.cpp
+
 
 SRC_MAIN = src/main.cpp
 
