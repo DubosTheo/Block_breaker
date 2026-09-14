@@ -3,13 +3,15 @@
 #include "Racket.hpp"
 #include "Blockbreaker/Iscene.hpp"
 #include "Blockbreaker/SceneManager.hpp"
+#include <vector>
+#include <memory>
 
 class Game : public Iscene{
 private:
-    SceneManager &_SceneManager;
+    SceneManager &_sceneManager;
     sf::Clock _clock;
-    std::vector<ball> _balls;
-    std::unique_ptr<racket> _racket;
+    std::vector<std::unique_ptr<ball>> _balls;
+    racket _racket;
 public:
     explicit Game(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Game() override;
