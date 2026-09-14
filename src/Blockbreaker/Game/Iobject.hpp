@@ -16,7 +16,7 @@ public:
     virtual void update(float deltaTime, sf::RenderWindow &window) = 0;
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     void setSpeed(float speed) {_speed = speed;};
-    void setPosition(sf::Vector2f position) {_position = position;}
+    void setPosition(sf::Vector2f position);
     void setVelocity(sf::Vector2f velocity) {_velocity = velocity;}
     float getSpeed() const {return _speed;}
     sf::Vector2f getPosition() const {return _position;}
