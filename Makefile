@@ -23,7 +23,7 @@ OBJDIR = obj
 OBJ = $(SRC:%.cpp=$(OBJDIR)/%.o)
 OBJ_MAIN = $(SRC_MAIN:%.cpp=$(OBJDIR)/%.o)
 
-NAME = Blockbreaker
+NAME = blockbreaker
 
 INCLUDE = -Isrc
 
