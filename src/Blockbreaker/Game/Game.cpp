@@ -28,8 +28,20 @@ void Game::handleEvent(sf::RenderWindow &window)
 void Game::update(float time, sf::RenderWindow &window)
 {
     _racket.update(time, window);
-    for (auto& balls : _balls)
+    for (auto& balls : _balls) {
         balls->update(time, window);
+        checkRacketColision(*balls);
+    }
 }
+
+void Game::checkRacketColision(ball &ball)
+{
+    if (ball.getGlobalbounds().intersects(_racket.getGlobalbounds())) {
+        sf::Vector2f vel = ball.getVelocity();
+        vel.y = -std::abs(vel.y); // Rebond vers le haut
+        ball.setVelocity(vel);
+    }
+}
+
 
 

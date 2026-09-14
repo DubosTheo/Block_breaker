@@ -18,5 +18,5 @@ public:
     void handleEvent(sf::RenderWindow &window) override;
     void update(float time, sf::RenderWindow &window) override;
     void draw(sf::RenderWindow &window) override;
-
+    void checkRacketColision(ball &ball);
 };
