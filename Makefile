@@ -6,7 +6,6 @@
 ##
 
 CXX := g++
-CC  := g++
 
 SRC += src/Blockbreaker/Blockbreaker.cpp
 SRC += src/Blockbreaker/SceneManager.cpp
