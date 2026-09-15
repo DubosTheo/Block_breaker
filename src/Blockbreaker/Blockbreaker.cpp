@@ -14,10 +14,9 @@ void Blockbreaker::run()
     _SceneManager.pushScene(std::make_unique<Game>(_SceneManager, _window));
     _window.setFramerateLimit(60);
     while (_window.isOpen() && !_SceneManager.isEmpty()) {
-        sf::Event event{};
         float time = Clock.restart().asSeconds();
-        while (_window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (const std::optional event = _window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
                 _window.close();
                 break;
             }

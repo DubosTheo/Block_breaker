@@ -21,7 +21,7 @@ void Game::draw(sf::RenderWindow &window)
 
 void Game::handleEvent(sf::RenderWindow &window)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
         window.close();
 }
 
@@ -36,7 +36,7 @@ void Game::update(float time, sf::RenderWindow &window)
 
 void Game::checkRacketColision(ball &ball)
 {
-    if (ball.getGlobalbounds().intersects(_racket.getGlobalbounds())) {
+    if (ball.getGlobalbounds().findIntersection(_racket.getGlobalbounds())) {
         sf::Vector2f vel = ball.getVelocity();
         vel.y = -std::abs(vel.y); // Rebond vers le haut
         ball.setVelocity(vel);

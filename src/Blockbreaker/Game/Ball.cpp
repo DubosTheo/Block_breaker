@@ -7,7 +7,7 @@ ball::ball()
     _radius = 10;
     _position = {400, 300};
     auto circle = std::make_unique<sf::CircleShape>(_radius);
-    circle->setOrigin(_radius, _radius);
+    circle->setOrigin({_radius, _radius});
     circle->setFillColor(sf::Color::Black);
     circle->setOutlineColor(sf::Color::Green);
     circle->setOutlineThickness(2);

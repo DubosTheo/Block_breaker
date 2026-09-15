@@ -5,7 +5,8 @@
 ## makefile
 ##
 
-CC := g++
+CXX := g++
+CC  := g++
 
 SRC += src/Blockbreaker/Blockbreaker.cpp
 SRC += src/Blockbreaker/SceneManager.cpp
@@ -25,22 +26,22 @@ OBJ_MAIN = $(SRC_MAIN:%.cpp=$(OBJDIR)/%.o)
 
 NAME = blockbreaker
 
-INCLUDE = -Isrc
+INCLUDE = -Isrc -I/usr/local/include
 
 CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++20
 
 CFLAGS_DEBUGS = -fanalyzer -g
 
-SFML_FLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+SFML_FLAGS = -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 all: $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CC) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME): $(OBJ) $(OBJ_MAIN)
-	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ) $(INCLUDE) $(SFML_FLAGS) $(CXXFLAGS)
+$(NAME): $(OBJ_MAIN) $(OBJ)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ $^ $(SFML_FLAGS)
 
 clean:
 	rm -rf $(OBJDIR)
@@ -56,5 +57,5 @@ debug:
 	make re CXXFLAGS+="$(CFLAGS_DEBUGS)"
 
 tests_run: fclean
-	$(CC) -o unit_tests $(SRC_TEST) $(SRC) --coverage -lcriterion $(INCLUDE) $(SFML_FLAGS) $(CXXFLAGS)
+	$(CXX) -o unit_tests $(SRC_TEST) $(SRC) --coverage -lcriterion $(INCLUDE) $(CXXFLAGS) $(SFML_FLAGS)
 	./unit_tests
