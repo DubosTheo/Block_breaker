@@ -48,13 +48,23 @@ void Game::update(float time, sf::RenderWindow &window)
         balls->update(time, window);
         checkRacketColision(*balls);
         checkBrickColision(*balls);
+        if (_bricks.empty())
+            window.close();
     }
 }
 
 void Game::checkRacketColision(ball &ball)
 {
-    if (ball.getGlobalbounds().findIntersection(_racket.getGlobalbounds())) {
+    sf::FloatRect ballBounds = ball.getGlobalbounds();
+    sf::FloatRect racketBounds = _racket.getGlobalbounds();
+
+    if (ballBounds.findIntersection(racketBounds)) {
+        float racketCenterX = racketBounds.position.x + (racketBounds.size.x / 2.0f);
+        float ballCenterX   = ballBounds.position.x + (ballBounds.size.x / 2.0f);
+        float halfRacketWidth = racketBounds.size.x / 2.0f;
+        float hitFactor = (ballCenterX - racketCenterX) / halfRacketWidth;
         sf::Vector2f vel = ball.getVelocity();
+        vel.x = hitFactor * std::abs(vel.y);
         vel.y = -std::abs(vel.y);
         ball.setVelocity(vel);
     }

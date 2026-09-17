@@ -13,6 +13,14 @@ int main()
 {
    Blockbreaker blockbreaker;
 
-   blockbreaker.run();
+    try {
+        blockbreaker.run();
+    }
+    catch (std::out_of_range &o) {
+        std::cerr << o.what() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }

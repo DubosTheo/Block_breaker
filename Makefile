@@ -14,6 +14,7 @@ SRC += src/Blockbreaker/Game/Game.cpp
 SRC += src/Blockbreaker/Game/Ball.cpp
 SRC += src/Blockbreaker/Game/Racket.cpp
 SRC += src/Blockbreaker/Game/Brick.cpp
+SRC += src/Blockbreaker/Menu/Menu.cpp
 
 SRC_MAIN = src/main.cpp
 

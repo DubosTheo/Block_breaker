@@ -1,5 +1,7 @@
 #include "Blockbreaker.hpp"
 
+#include "Menu/Menu.hpp"
+
 Blockbreaker::Blockbreaker() : _window(sf::VideoMode({800, 600}), "Blockbraker"), _SceneManager()
 {
 }
@@ -11,7 +13,7 @@ Blockbreaker::~Blockbreaker()
 void Blockbreaker::run()
 {
     sf::Clock Clock;
-    _SceneManager.pushScene(std::make_unique<Game>(_SceneManager, _window));
+    _SceneManager.pushScene(std::make_unique<Menu>(_SceneManager, _window));
     _window.setFramerateLimit(60);
     while (_window.isOpen() && !_SceneManager.isEmpty()) {
         float time = Clock.restart().asSeconds();
