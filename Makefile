@@ -9,7 +9,7 @@ CXX := g++
 
 SRC += src/Blockbreaker/Blockbreaker.cpp
 SRC += src/Blockbreaker/SceneManager.cpp
-SRC += src/Blockbreaker/Game/Iobject.cpp
+SRC += src/Blockbreaker/Game/Aobject.cpp
 SRC += src/Blockbreaker/Game/Game.cpp
 SRC += src/Blockbreaker/Game/Ball.cpp
 SRC += src/Blockbreaker/Game/Racket.cpp
