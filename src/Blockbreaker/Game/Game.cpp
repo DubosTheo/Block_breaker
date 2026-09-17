@@ -22,7 +22,6 @@ Game::~Game()
 {
 }
 
-
 void Game::draw(sf::RenderWindow &window)
 {
     window.draw(_racket);
@@ -48,6 +47,7 @@ void Game::update(float time, sf::RenderWindow &window)
     for (auto& balls : _balls) {
         balls->update(time, window);
         checkRacketColision(*balls);
+        checkBrickColision(*balls);
     }
 }
 
@@ -55,10 +55,35 @@ void Game::checkRacketColision(ball &ball)
 {
     if (ball.getGlobalbounds().findIntersection(_racket.getGlobalbounds())) {
         sf::Vector2f vel = ball.getVelocity();
-        vel.y = -std::abs(vel.y); // Rebond vers le haut
+        vel.y = -std::abs(vel.y);
         ball.setVelocity(vel);
     }
 }
+
+void Game::checkBrickColision(ball &ball)
+{
+    for (auto i = _bricks.begin(); i != _bricks.end();) {
+        if (*i && ball.getGlobalbounds().findIntersection((*i)->getGlobalbounds())) {
+            sf::Vector2f vel = ball.getVelocity();
+            sf::FloatRect ballBounds = ball.getGlobalbounds();
+            sf::FloatRect brickBounds = (*i)->getGlobalbounds();
+            auto intersection = ballBounds.findIntersection(brickBounds);
+            if (intersection.has_value()) {
+                if (intersection->size.x > intersection->size.y)
+                    vel.y = -vel.y;
+                else
+                    vel.x = -vel.x;
+            }
+            else
+                vel.y = -vel.y;
+            ball.setVelocity(vel);
+            i = _bricks.erase(i);
+            break;
+        } else
+            ++i;
+    }
+}
+
 
 
 
