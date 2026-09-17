@@ -6,12 +6,15 @@
 #include <vector>
 #include <memory>
 
+#include "Brick.hpp"
+
 class Game : public Iscene{
 private:
     SceneManager &_sceneManager;
     sf::Clock _clock;
     std::vector<std::unique_ptr<ball>> _balls;
     racket _racket;
+    std::vector<std::unique_ptr<Brick>> _bricks;
 public:
     explicit Game(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Game() override;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Aobject.hpp"
 
-class ball : public Aobject {
+class ball final : public Aobject {
 private:
     float _radius;
 public:

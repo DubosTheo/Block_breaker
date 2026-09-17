@@ -1,7 +1,7 @@
 #pragma once
 #include "Aobject.hpp"
 
-class racket : public Aobject {
+class racket final : public Aobject {
 private:
     sf::Vector2f _size;
 public:
