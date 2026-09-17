@@ -1,4 +1,7 @@
 #pragma once
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+
 #include "Aobject.hpp"
 
 class Brick : public Aobject {

@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "Brick.hpp"
+#include "Sound.hpp"
 
 class Game : public Iscene{
 private:
@@ -15,6 +16,7 @@ private:
     std::vector<std::unique_ptr<ball>> _balls;
     racket _racket;
     std::vector<std::unique_ptr<Brick>> _bricks;
+    sounds _sounds;
 public:
     explicit Game(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Game() override;
@@ -23,4 +25,5 @@ public:
     void draw(sf::RenderWindow &window) override;
     void checkRacketColision(ball &ball);
     void checkBrickColision(ball &ball);
+    void checkBallWallColision(ball &ball, sf::RenderWindow &window);
 };

@@ -5,7 +5,7 @@
 ball::ball()
 {
     _radius = 10;
-    _position = {400, 300};
+    _position = {400, 400};
     auto circle = std::make_unique<sf::CircleShape>(_radius);
     circle->setOrigin({_radius, _radius});
     circle->setFillColor(sf::Color::Black);
@@ -20,13 +20,5 @@ ball::ball()
 void ball::update(float deltaTime, sf::RenderWindow &window)
 {
     _position += _velocity * _speed * deltaTime;
-    if (_position.x - _radius < 0.0f || _position.x + _radius > window.getSize().x) {
-        _velocity.x = -_velocity.x;
-    }
-    if (_position.y - _radius < 0.0f) {
-        _velocity.y = -_velocity.y;
-    }
-    if (_position.y + _radius > window.getSize().y)
-        window.close();
     setPosition(_position);
 }

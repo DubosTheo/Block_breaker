@@ -14,6 +14,7 @@ SRC += src/Blockbreaker/Game/Game.cpp
 SRC += src/Blockbreaker/Game/Ball.cpp
 SRC += src/Blockbreaker/Game/Racket.cpp
 SRC += src/Blockbreaker/Game/Brick.cpp
+SRC += src/Blockbreaker/Game/Sound.cpp
 SRC += src/Blockbreaker/Menu/Menu.cpp
 
 SRC_MAIN = src/main.cpp
@@ -33,7 +34,7 @@ CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++20
 
 CFLAGS_DEBUGS = -fanalyzer -g
 
-SFML_FLAGS = -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system
+SFML_FLAGS = -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 all: $(NAME)
 

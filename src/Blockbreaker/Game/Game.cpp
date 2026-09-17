@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _sceneManager(SceneManager), _racket(window.getSize())
+Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _sceneManager(SceneManager), _racket(window.getSize()), _sounds()
 {
     float x = 100;
     float y = 50;
@@ -48,6 +48,7 @@ void Game::update(float time, sf::RenderWindow &window)
         balls->update(time, window);
         checkRacketColision(*balls);
         checkBrickColision(*balls);
+        checkBallWallColision(*balls, window);
         if (_bricks.empty())
             window.close();
     }
@@ -67,6 +68,7 @@ void Game::checkRacketColision(ball &ball)
         vel.x = hitFactor * std::abs(vel.y);
         vel.y = -std::abs(vel.y);
         ball.setVelocity(vel);
+        _sounds.playBounceBall();
     }
 }
 
@@ -87,12 +89,33 @@ void Game::checkBrickColision(ball &ball)
             else
                 vel.y = -vel.y;
             ball.setVelocity(vel);
+            _sounds.playDestroyBrick();
             i = _bricks.erase(i);
             break;
         } else
             ++i;
     }
 }
+
+void Game::checkBallWallColision(ball &ball, sf::RenderWindow &window)
+{
+    sf::Vector2f position = ball.getPosition();
+    sf::Vector2f velocity = ball.getVelocity();
+    float radius = ball.getRadius();
+    if (position.x - radius < 0.0f || position.x + radius > window.getSize().x) {
+        _sounds.playBounceBall();
+        velocity.x = -velocity.x;
+    }
+    if (position.y - radius < 0.0f) {
+        _sounds.playBounceBall();
+        velocity.y = -velocity.y;
+    }
+    if (position.y + radius > window.getSize().y)
+        window.close();
+    ball.setVelocity(velocity);
+    ball.setPosition(position);
+}
+
 
 
 

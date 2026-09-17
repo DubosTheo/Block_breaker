@@ -1,5 +1,6 @@
 #pragma once
 #include "Aobject.hpp"
+#include <SFML/Audio.hpp>
 
 class ball final : public Aobject {
 private:

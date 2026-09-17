@@ -23,4 +23,3 @@ void Brick::init(sf::Vector2f position, const sf::Vector2u &windowSize)
 void Brick::update(float deltaTime, sf::RenderWindow &window)
 {
 }
-
