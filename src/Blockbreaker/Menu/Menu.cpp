@@ -14,7 +14,7 @@ void Menu::handleEvent(sf::RenderWindow &window)
 }
 
 Menu::Menu(SceneManager &SceneManager, sf::RenderWindow &window) : _SceneManager(
-    SceneManager), _menu(0)
+    SceneManager), _menuMusic(0)
 {
     if (!_font.openFromFile("assets/fonts/ARCADECLASSIC.TTF"))
         throw std::runtime_error(
@@ -26,8 +26,8 @@ Menu::Menu(SceneManager &SceneManager, sf::RenderWindow &window) : _SceneManager
         window.getSize().x / 2.0f - 50, window.getSize().y / 2.0f - 50
     });
     _text.push_back(std::move(text));
-    _menu = _musicManager.addMusic("assets/Musics/menu.mp3");
-    _musicManager.playMusic(_menu);
+    _menuMusic = _musicManager.addMusic("assets/Musics/menu.mp3");
+    _musicManager.playMusic(_menuMusic);
 }
 
 void Menu::update(float time, sf::RenderWindow &window)

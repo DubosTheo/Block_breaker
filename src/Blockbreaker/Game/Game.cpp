@@ -1,7 +1,8 @@
 #include "Game.hpp"
 
 Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _sceneManager(
-        SceneManager), _racket(window.getSize()), _destroyBrick(0), _bounceBall(0)
+        SceneManager), _racket(window.getSize()), _gameMusic(0),
+    _destroyBrick(0), _bounceBall(0)
 {
     float x = 100;
     float y = 50;
@@ -19,6 +20,8 @@ Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _sceneManager
     }
     _destroyBrick = _soundManager.addSound("assets/Sound/Brick_destruct.mp3");
     _bounceBall = _soundManager.addSound("assets/Sound/ball_bounce.mp3");
+    _gameMusic = _musicManager.addMusic("assets/Musics/game.mp3");
+    _musicManager.playMusic(_gameMusic);
 }
 
 Game::~Game()

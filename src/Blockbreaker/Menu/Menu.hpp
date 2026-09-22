@@ -8,7 +8,7 @@ private:
     SceneManager &_SceneManager;
     sf::Font _font;
     std::vector<std::unique_ptr<sf::Text>> _text;
-    Music _menu;
+    Music _menuMusic;
     MusicManager _musicManager;
 public:
     explicit Menu(SceneManager &SceneManager, sf::RenderWindow &window);

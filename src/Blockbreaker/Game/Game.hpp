@@ -9,6 +9,7 @@
 #include "Brick.hpp"
 #include "Blockbreaker/Sound.hpp"
 #include "../SoundManager.hpp"
+#include "Blockbreaker/MusicManager.hpp"
 
 class Game : public Iscene{
 private:
@@ -18,6 +19,8 @@ private:
     racket _racket;
     std::vector<std::unique_ptr<Brick>> _bricks;
     SoundManager _soundManager;
+    MusicManager _musicManager;
+    Music _gameMusic;
     Sound _destroyBrick;
     Sound _bounceBall;
 public:
