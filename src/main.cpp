@@ -11,9 +11,8 @@
 
 int main()
 {
-   Blockbreaker blockbreaker;
-
     try {
+        Blockbreaker blockbreaker;
         blockbreaker.run();
     }
     catch (std::out_of_range &o) {

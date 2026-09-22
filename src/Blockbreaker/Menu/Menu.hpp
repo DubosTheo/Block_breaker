@@ -1,12 +1,15 @@
 #pragma once
 #include "../Iscene.hpp"
 #include "../SceneManager.hpp"
+#include "Blockbreaker/MusicManager.hpp"
 
 class Menu : public Iscene {
 private:
     SceneManager &_SceneManager;
     sf::Font _font;
     std::vector<std::unique_ptr<sf::Text>> _text;
+    Music _menu;
+    MusicManager _musicManager;
 public:
     explicit Menu(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Menu() override;
