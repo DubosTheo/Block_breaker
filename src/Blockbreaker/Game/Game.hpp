@@ -7,7 +7,8 @@
 #include <memory>
 
 #include "Brick.hpp"
-#include "Sound.hpp"
+#include "Blockbreaker/Sound.hpp"
+#include "../SoundManager.hpp"
 
 class Game : public Iscene{
 private:
@@ -16,7 +17,9 @@ private:
     std::vector<std::unique_ptr<ball>> _balls;
     racket _racket;
     std::vector<std::unique_ptr<Brick>> _bricks;
-    sounds _sounds;
+    SoundManager _soundManager;
+    Sound _destroyBrick;
+    Sound _bounceBall;
 public:
     explicit Game(SceneManager &SceneManager, sf::RenderWindow &window);
     ~Game() override;
