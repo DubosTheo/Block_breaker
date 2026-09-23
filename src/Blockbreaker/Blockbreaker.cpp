@@ -2,8 +2,13 @@
 
 #include "Menu/Menu.hpp"
 
-Blockbreaker::Blockbreaker() : _window(sf::VideoMode({800, 600}), "Blockbraker"), _SceneManager()
+Blockbreaker::Blockbreaker() : _window(sf::VideoMode({800, 600}), "Blockbraker", sf::State::Windowed), _SceneManager()
 {
+    sf::Vector2u desktopSize = sf::VideoMode::getDesktopMode().size;
+    sf::Vector2u windowSize = _window.getSize();
+    int posX = static_cast<int>(desktopSize.x - windowSize.x) / 2;
+    int posY = static_cast<int>(desktopSize.y - windowSize.y) / 2;
+    _window.setPosition({posX, posY});
 }
 
 Blockbreaker::~Blockbreaker()

@@ -27,15 +27,20 @@ racket::racket(const sf::Vector2u &windowSize)
 
 void racket::init(const sf::Vector2u &windowSize)
 {
-    _size = {150.0f, 25.0f};
+    sf::Vector2f winSize = static_cast<sf::Vector2f>(windowSize);
+
+    _size = { winSize.x * 0.16f, winSize.y * 0.025f };
     _velocity = {0.0f, 0.0f};
-    _speed = 600;
+    _speed = 700.0f * (winSize.x / 1920.0f);
+
     auto rect = std::make_unique<sf::RectangleShape>(_size);
     rect->setOrigin({_size.x / 2.0f, _size.y / 2.0f});
     rect->setFillColor(sf::Color::Black);
     rect->setOutlineColor(sf::Color::Green);
-    rect->setOutlineThickness(5);
+    rect->setOutlineThickness(3.0f);
     _shape = std::move(rect);
-    _position = sf::Vector2f(windowSize.x / 2.0f, windowSize.y - 50.0f);
-    setPosition(_position);
+    _position = { winSize.x * 0.50f, winSize.y * 0.95f };
+    if (_shape) {
+        _shape->setPosition(_position);
+    }
 }

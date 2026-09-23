@@ -4,18 +4,24 @@ Game::Game(SceneManager &SceneManager, sf::RenderWindow &window) : _sceneManager
         SceneManager), _racket(window.getSize()), _gameMusic(0),
     _destroyBrick(0), _bounceBall(0)
 {
-    float x = 100;
-    float y = 50;
-    _balls.push_back(std::make_unique<ball>());
-    for (int i = 0; i < 20; i++) {
-        sf::Vector2f position;
-        position.x = x;
-        position.y = y;
-        _bricks.push_back(std::make_unique<Brick>(position, window.getSize()));
-        x += 200;
-        if (x > window.getSize().x) {
-            x = 100;
-            y += 50;
+    sf::Vector2f winSize = static_cast<sf::Vector2f>(window.getSize());
+
+    float startX = winSize.x * 0.06f;
+    float startY = winSize.y * 0.08f;
+
+    float stepX  = winSize.x * 0.14f;
+    float stepY  = winSize.y * 0.05f;
+
+    float x = startX;
+    float y = startY;
+
+    _balls.push_back(std::make_unique<ball>(window.getSize()));
+    for (int i = 0; i < 42; i++) {
+        _bricks.push_back(std::make_unique<Brick>(sf::Vector2f{x, y}, window.getSize()));
+        x += stepX;
+        if (x > winSize.x - startX) {
+            x = startX;
+            y += stepY;
         }
     }
     _destroyBrick = _soundManager.addSound("assets/Sound/Brick_destruct.mp3");
